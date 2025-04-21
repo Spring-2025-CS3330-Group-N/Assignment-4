@@ -13,12 +13,16 @@ public class Cell {
 		this.down = down;
 	}
 
+	public CellComponents getValidEdgeType(CellComponents edgeType) {
+		return (edgeType == null)? CellComponents.WALL : edgeType;
+	}
+
 	public CellComponents getLeft() {
 		return left;
 	}
 
 	public void setLeft(CellComponents left) {
-		this.left = left;
+		this.left = getValidEdgeType(left);
 	}
 
 	public CellComponents getRight() {
@@ -26,7 +30,7 @@ public class Cell {
 	}
 
 	public void setRight(CellComponents right) {
-		this.right = right;
+		this.right = getValidEdgeType(right);
 	}
 
 	public CellComponents getUp() {
@@ -34,7 +38,7 @@ public class Cell {
 	}
 
 	public void setUp(CellComponents up) {
-		this.up = up;
+		this.up = getValidEdgeType(up);
 	}
 
 	public CellComponents getDown() {
@@ -42,7 +46,7 @@ public class Cell {
 	}
 
 	public void setDown(CellComponents down) {
-		this.down = down;
+		this.down = getValidEdgeType(down);
 	}
 
 	@Override
