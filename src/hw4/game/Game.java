@@ -34,6 +34,10 @@ public class Game {
 	}
 
 	public Grid createRandomGrid(int n) {
+		if (2 >= n || n >= 8) {
+			return null;
+		}
+
 		var rows = new ArrayList<Row>();
 		var grid = new Grid(rows);
 		return grid;
