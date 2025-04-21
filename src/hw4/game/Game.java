@@ -1,6 +1,11 @@
 package hw4.game;
 
+import java.util.ArrayList;
+
+import hw4.maze.Cell;
+import hw4.maze.CellComponents;
 import hw4.maze.Grid;
+import hw4.maze.Row;
 import hw4.player.Movement;
 import hw4.player.Player;
 
@@ -29,8 +34,9 @@ public class Game {
 	}
 
 	public Grid createRandomGrid(int n) {
-		// TODO Auto-generated method stub
-		return null;
+		var rows = new ArrayList<Row>();
+		var grid = new Grid(rows);
+		return grid;
 	}
 
 	@Override
