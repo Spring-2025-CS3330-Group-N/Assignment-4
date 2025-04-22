@@ -59,8 +59,72 @@ public class Game {
 	 * @param player The player to be moved
 	 * @return True if the movement and player are valid, return False if otherwise.
 	 */
-	public boolean play(Movement right, Player player) {
-		// TODO Auto-generated method stub
+	public boolean play(Movement movement, Player player) {
+		// check for invalid player (testInvalidNullPlayer)
+		if (player == null) {
+			return false;
+		}
+		
+		// check for invalid movement (testInvalidMovement)
+		if (movement == null) {
+			return false;
+		}
+		
+		// get current player position
+		var currentCell = player.getCurrentCell();
+
+		// catch any null cell components
+		var left = currentCell.getValidEdgeType(currentCell.getLeft());
+		var right = currentCell.getValidEdgeType(currentCell.getRight());
+		var up = currentCell.getValidEdgeType(currentCell.getUp());
+		var down = currentCell.getValidEdgeType(currentCell.getDown());
+		
+		// if up or down, change row
+		// if left or right, change cell
+		
+		// check left
+		if (movement.equals("LEFT")) {
+			// check for wall
+			if (!left.equals("WALL")) {
+				// update player position -- set current row/cell
+				if (left.equals("EXIT")) {
+					// end game after movement!
+				}
+				return true;
+			}
+			return false;
+		}
+		
+		// check right
+		if (movement.equals("RIGHT")) {
+			// check for wall
+			if (!right.equals("WALL")) {
+				// update player position -- set current row/cell
+				return true;
+			}
+			return false;
+		}
+	
+		// check up
+		if (movement.equals("UP")) {
+			// check for wall
+			if (!up.equals("WALL")) {
+				// update player position -- set current row/cell
+				return true;
+			}
+			return false;
+		}
+		
+		// check down
+		if (movement.equals("DOWN")) {
+			// check for wall
+			if (!down.equals("WALL")) {
+				// update player position -- set current row/cell
+				return true;
+			}
+			return false;
+		}
+		
 		return false;
 	}
 	
