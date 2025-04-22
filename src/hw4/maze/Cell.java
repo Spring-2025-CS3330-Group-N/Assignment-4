@@ -1,5 +1,7 @@
 package hw4.maze;
 
+import hw4.player.Movement;
+
 /** 
  * This is a class for cells in the maze. Each cell has 4 components: left, right, up and down.
  * Cell component options are either aperture, wall, or exit.
@@ -110,6 +112,23 @@ public class Cell {
 	 */
 	public void setDown(CellComponents down) {
 		this.down = getValidEdgeType(down);
+	}
+
+	public void setSide(Movement direction, CellComponents kind) {
+		switch (direction) {
+		case Movement.LEFT:
+			this.left = kind;
+			break;
+		case Movement.RIGHT:
+			this.right = kind;
+			break;
+		case Movement.UP:
+			this.up = kind;
+			break;
+		case Movement.DOWN:
+			this.down = kind;
+			break;
+		}
 	}
 
 	/**

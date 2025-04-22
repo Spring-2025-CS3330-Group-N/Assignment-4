@@ -6,6 +6,8 @@ import hw4.maze.Cell;
 import hw4.maze.CellComponents;
 import hw4.maze.Grid;
 import hw4.maze.Row;
+import hw4.maze.generator.MazeGenerator;
+import hw4.maze.generator.MazeSketcher;
 import hw4.player.Movement;
 import hw4.player.Player;
 
@@ -61,6 +63,27 @@ public class Game {
 		// TODO Auto-generated method stub
 		return false;
 	}
+	
+	private Grid createEmptyGrid(int n) {
+		var rows = new ArrayList<Row>();
+		for (var i = 0; i < n; ++i) {
+			var cells = new ArrayList<Cell>();
+			for (var j = 0; j < n; ++j) {
+				var cell = new Cell(
+					CellComponents.WALL,
+					CellComponents.WALL,
+					CellComponents.WALL,
+					CellComponents.WALL
+				);
+				cells.add(cell);
+			}
+			var row = new Row(cells);
+			rows.add(row);
+		}
+
+		var grid = new Grid(rows);
+		return grid;
+	}
 
 	/**
 	 * createRandomGrid():
@@ -74,8 +97,24 @@ public class Game {
 			return null;
 		}
 
-		var rows = new ArrayList<Row>();
-		var grid = new Grid(rows);
+		var grid = this.createEmptyGrid(n);
+		
+		var entranceCell = grid.getRows().get(0).getCells().get(0);
+		entranceCell.setLeft(CellComponents.EXIT);
+		
+		var generator = new MazeGenerator(n, n);
+		generator.generate(0, 0, new MazeSketcher() {
+			@Override
+			public void connect(int x1, int y1, int x2, int y2) {
+				int dx = x2 - x1;
+				int dy = y2 - y1;
+				var startCell = grid.getRows().get(y1).getCells().get(x1);
+				var endCell = grid.getRows().get(y2).getCells().get(x2);
+				startCell.setSide(Movement.fromDelta(dx, dy), CellComponents.APERTURE);
+				endCell.setSide(Movement.fromDelta(-dx, -dy), CellComponents.APERTURE);
+			}
+		});
+		
 		return grid;
 	}
 
