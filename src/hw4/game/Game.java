@@ -54,8 +54,8 @@ public class Game {
 
 	/**
 	 * play():
-	 * This method updates a character's position based on the given input variables
-	 * @param right The direction a player will move (ex. left, right, up, down)
+	 * This method updates a character's position based on the given input variables. 
+	 * @param movement The direction a player wants to move (ex. left, right, up, down)
 	 * @param player The player to be moved
 	 * @return True if the movement and player are valid, return False if otherwise.
 	 */
@@ -83,11 +83,11 @@ public class Game {
 		// if left or right, change cell
 		
 		// check left
-		if (movement.equals("LEFT")) {
+		if (movement == Movement.LEFT) {
 			// check for wall
-			if (!left.equals("WALL")) {
+			if (!(left == CellComponents.WALL)) {
 				// update player position -- set current row/cell
-				if (left.equals("EXIT")) {
+				if (left == CellComponents.EXIT) {
 					// end game after movement!
 				}
 				return true;
@@ -96,9 +96,9 @@ public class Game {
 		}
 		
 		// check right
-		if (movement.equals("RIGHT")) {
+		if (movement == Movement.RIGHT) {
 			// check for wall
-			if (!right.equals("WALL")) {
+			if (!(right == CellComponents.WALL)) {
 				// update player position -- set current row/cell
 				return true;
 			}
@@ -106,9 +106,9 @@ public class Game {
 		}
 	
 		// check up
-		if (movement.equals("UP")) {
+		if (movement == Movement.UP) {
 			// check for wall
-			if (!up.equals("WALL")) {
+			if (!(up == CellComponents.WALL)) {
 				// update player position -- set current row/cell
 				return true;
 			}
@@ -116,9 +116,9 @@ public class Game {
 		}
 		
 		// check down
-		if (movement.equals("DOWN")) {
+		if (movement == Movement.DOWN) {
 			// check for wall
-			if (!down.equals("WALL")) {
+			if (!(down == CellComponents.WALL)) {
 				// update player position -- set current row/cell
 				return true;
 			}
