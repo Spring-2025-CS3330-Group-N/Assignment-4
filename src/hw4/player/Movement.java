@@ -2,8 +2,8 @@ package hw4.player;
 
 public enum Movement {
 	LEFT(-1, 0),
-	UP(1, 0),
-	RIGHT(0, -1),
+	RIGHT(1, 0),
+	UP(0, -1),
 	DOWN(0, 1);
 	
 	private int x;
