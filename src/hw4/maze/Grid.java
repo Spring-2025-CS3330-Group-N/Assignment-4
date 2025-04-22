@@ -42,4 +42,49 @@ public class Grid {
 	public String toString() {
 		return "Grid [rows=" + rows + "]";
 	}
+
+	public void worsePrint(int playerX, int playerY) {
+		for (var i = 0; i < this.rows.size(); ++i) {
+			var row = this.rows.get(i);
+			var cells = row.getCells();
+
+			for (var j = 0; j < cells.size(); ++j) {
+				var cell = cells.get(j);
+				String tile;
+				if (i == playerY && j == playerX) {
+					tile = "A";
+				} else if (
+					cell.getLeft() == CellComponents.EXIT
+					|| cell.getRight() == CellComponents.EXIT
+					|| cell.getUp() == CellComponents.EXIT
+					|| cell.getDown() == CellComponents.EXIT
+				) {
+					tile = "E";
+				} else {
+					tile = "S";
+				}
+				System.out.print(tile + " ");
+			}
+			System.out.println();
+		}
+	}
+
+	public void betterPrint(int playerX, int playerY) {
+		for (var i = 0; i < this.rows.size(); ++i) {
+			var row = this.rows.get(i);
+			var cells = row.getCells();
+			for (var cell : cells) {
+				System.out.print((cell.getUp() == CellComponents.WALL)? "•-" : "• ");
+			}
+			System.out.println("•");
+			for (var j = 0; j < cells.size(); ++j) {
+				var cell = cells.get(j);
+				var filler = (i == playerY && j == playerX) ? "@" : " ";
+				var left = (cell.getLeft() == CellComponents.WALL)? '|' : ' ';
+				System.out.print(left + filler);
+			}
+			System.out.println("|");
+		}
+		System.out.println("•-".repeat(rows.size()) + "•");
+	}
 }
