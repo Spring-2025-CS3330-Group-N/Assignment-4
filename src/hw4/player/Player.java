@@ -78,7 +78,7 @@ public class Player {
 		if (this.position == null) {
 			// set position to bottom right of grid
 			var n = this.currentRow.getRowLength();
-			this.setPlayerPosition(n, n);
+			this.setPlayerPosition(n - 1, n - 1);
 		}
 		return this.position;
 	}

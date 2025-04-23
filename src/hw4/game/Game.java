@@ -87,9 +87,13 @@ public class Game {
 				if (left == CellComponents.EXIT) {
 					// end game! update player position -- move off the game grid 
 					player.setPlayerPosition(-1, -1);
+					return true;
 				}
 				// update player position -- move left (-1, 0)
 				player.setPlayerPosition(playerPosition.getX() -1, playerPosition.getY());
+				player.setCurrentCell(this.grid.getRows().get(player.getPlayerPosition().getY()).getCells().get(player.getPlayerPosition().getX()));
+				System.out.println();
+				grid.betterPrint(player.getPlayerPosition().getX(), player.getPlayerPosition().getY());
 				return true;
 			}
 		}
@@ -99,6 +103,9 @@ public class Game {
 			if (!(right == CellComponents.WALL)) {
 				// update player position -- move right (+1, 0)
 				player.setPlayerPosition(playerPosition.getX() +1, playerPosition.getY());
+				player.setCurrentCell(this.grid.getRows().get(player.getPlayerPosition().getY()).getCells().get(player.getPlayerPosition().getX()));
+				System.out.println();
+				grid.betterPrint(player.getPlayerPosition().getX(), player.getPlayerPosition().getY());
 				return true;
 			}
 		}
@@ -108,6 +115,9 @@ public class Game {
 			if (!(up == CellComponents.WALL)) {
 				// update player position -- move up (0, -1)
 				player.setPlayerPosition(playerPosition.getX(), playerPosition.getY() -1);
+				player.setCurrentCell(this.grid.getRows().get(player.getPlayerPosition().getY()).getCells().get(player.getPlayerPosition().getX()));
+				System.out.println();
+				grid.betterPrint(player.getPlayerPosition().getX(), player.getPlayerPosition().getY());
 				return true;
 			}
 		}
@@ -117,9 +127,14 @@ public class Game {
 			if (!(down == CellComponents.WALL)) {
 				// update player position -- move down (0, +1)
 				player.setPlayerPosition(playerPosition.getX(), playerPosition.getY() +1);
+				player.setCurrentCell(this.grid.getRows().get(player.getPlayerPosition().getY()).getCells().get(player.getPlayerPosition().getX()));
+				System.out.println();
+				grid.betterPrint(player.getPlayerPosition().getX(), player.getPlayerPosition().getY());
 				return true;
 			}
 		}
+		System.out.println();
+		grid.betterPrint(player.getPlayerPosition().getX(), player.getPlayerPosition().getY());
 		return false;
 	}
 	
