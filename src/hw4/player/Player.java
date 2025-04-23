@@ -25,6 +25,7 @@ public class Player {
 	}
 
 	/**
+	 * getCurrentRow():
 	 * This getter method returns the current row position of the player.
 	 * @return the player's row position
 	 */
@@ -33,6 +34,7 @@ public class Player {
 	}
 
 	/**
+	 * setCurrentRow():
 	 * This setter method assigns the player's current row to the provided method argument.
 	 * @param currentRow Desired row position for the player
 	 */
@@ -41,6 +43,7 @@ public class Player {
 	}
 
 	/**
+	 * getCurrentCell():
 	 * This getter method returns the current cell position of the player.
 	 * @return The player's cell position
 	 */
@@ -49,6 +52,7 @@ public class Player {
 	}
 
 	/**
+	 * setCurrentCell():
 	 * This setter method assigns the player's current cell to the provided method argument.
 	 * @param currentCell Desired cell position for the player
 	 */
@@ -66,6 +70,7 @@ public class Player {
 	}
 	
 	/**
+	 * getPlayerPosition():
 	 * This getter function retrieves the coordinates of a given player.
 	 * @return Current position of player
 	 */
@@ -78,7 +83,9 @@ public class Player {
 		return this.position;
 	}
 	/**
+	 * setPlayerPosition():
 	 * This setter method assigns the provided argument values to the corresponding coordinate points.
+	 * If the player's coordinates have not yet been set, they are set equal to the maze origin coordinates first.
 	 * @param x Desired x value of coordinate
 	 * @param y Desired y value of coordinate
 	 */

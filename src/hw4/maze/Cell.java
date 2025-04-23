@@ -114,6 +114,11 @@ public class Cell {
 		this.down = getValidEdgeType(down);
 	}
 
+	/**
+	 * This method updates a cell component based on the direction the player is moving and a given cell component value.
+	 * @param direction Direction of the player
+	 * @param kind The type of cell component the player will face in that direction
+	 */
 	public void setSide(Movement direction, CellComponents kind) {
 		switch (direction) {
 		case Movement.LEFT:

@@ -44,6 +44,7 @@ public class Row {
 	}
 	
 	/**
+	 * getRowLength():
 	 * This is a helper method that retrieves the size of the row it's called upon.
 	 * @return The number of cells in a row
 	 */
