@@ -72,62 +72,62 @@ public class Game {
 		
 		// get current player position
 		var currentCell = player.getCurrentCell();
+		var playerPosition = player.getPlayerPosition();
 
 		// catch any null cell components
 		var left = currentCell.getValidEdgeType(currentCell.getLeft());
 		var right = currentCell.getValidEdgeType(currentCell.getRight());
 		var up = currentCell.getValidEdgeType(currentCell.getUp());
 		var down = currentCell.getValidEdgeType(currentCell.getDown());
-		
-		// if up or down, change row
-		// if left or right, change cell
-		
-		// check left
+				
 		if (movement == Movement.LEFT) {
 			// check for wall
 			if (!(left == CellComponents.WALL)) {
-				// update player position -- set current row/cell
+				// check for exit
 				if (left == CellComponents.EXIT) {
-					// end game after movement!
+					// end game! update player position -- move off the game grid 
+					player.setPlayerPosition(-1, -1);
 				}
+				// update player position -- move left (-1, 0)
+				player.setPlayerPosition(playerPosition.getX() -1, playerPosition.getY());
 				return true;
 			}
-			return false;
 		}
 		
-		// check right
 		if (movement == Movement.RIGHT) {
 			// check for wall
 			if (!(right == CellComponents.WALL)) {
-				// update player position -- set current row/cell
+				// update player position -- move right (+1, 0)
+				player.setPlayerPosition(playerPosition.getX() +1, playerPosition.getY());
 				return true;
 			}
-			return false;
 		}
 	
-		// check up
 		if (movement == Movement.UP) {
 			// check for wall
 			if (!(up == CellComponents.WALL)) {
-				// update player position -- set current row/cell
+				// update player position -- move up (0, -1)
+				player.setPlayerPosition(playerPosition.getX(), playerPosition.getY() -1);
 				return true;
 			}
-			return false;
 		}
 		
-		// check down
 		if (movement == Movement.DOWN) {
 			// check for wall
 			if (!(down == CellComponents.WALL)) {
-				// update player position -- set current row/cell
+				// update player position -- move down (0, +1)
+				player.setPlayerPosition(playerPosition.getX(), playerPosition.getY() +1);
 				return true;
 			}
-			return false;
 		}
-		
 		return false;
 	}
 	
+	/**
+	 * This method creates an empty grid containing cells. All cell components are walls by default.
+	 * @param n Grid size
+	 * @return New empty grid
+	 */
 	private Grid createEmptyGrid(int n) {
 		var rows = new ArrayList<Row>();
 		for (var i = 0; i < n; ++i) {
