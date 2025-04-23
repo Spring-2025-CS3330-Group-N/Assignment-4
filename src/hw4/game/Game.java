@@ -133,8 +133,6 @@ public class Game {
 				return true;
 			}
 		}
-		System.out.println();
-		grid.betterPrint(player.getPlayerPosition().getX(), player.getPlayerPosition().getY());
 		return false;
 	}
 	

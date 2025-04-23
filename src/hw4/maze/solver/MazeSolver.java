@@ -25,11 +25,21 @@ public class MazeSolver {
 	}
 
 	/**
+	 * since java doesn't have this built in :|
+	 * @param a
+	 * @param b
+	 * @return
+	 */
+	private int modulo(int a, int b) {
+		return (a % b + b) % b;
+	}
+
+	/**
 	 * rotate the direction 90*dir degrees counter-clockwise
 	 * @param dir
 	 */
 	private void rotate(int dir) {
-		var directionIndex = (this.directionIndex + dir) % this.directions.length;
+		var directionIndex = this.modulo(this.directionIndex + dir, this.directions.length);
 		setDirection(directionIndex);
 	}
 
@@ -38,7 +48,7 @@ public class MazeSolver {
 			this.rotate(-1);
 			while (true) {
 				Coordinate next = this.coordinate.add(this.direction);
-				if (probe.attemptMove(next.getX(), next.getY())) {
+				if (probe.attemptMove(coordinate.getX(), coordinate.getY(), next.getX(), next.getY())) {
 					this.coordinate = next;
 					break;
 				}
