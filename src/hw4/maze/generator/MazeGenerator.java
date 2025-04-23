@@ -6,6 +6,8 @@ import java.util.List;
 import java.util.Random;
 import java.util.stream.Collectors;
 
+import hw4.player.Movement;
+
 public class MazeGenerator {
 	private int width;
 	private int height;
@@ -39,14 +41,11 @@ public class MazeGenerator {
 	}
 
 	private List<Coordinate> getNeighbors(Coordinate of) {
-		var x = of.getX();
-		var y = of.getY();
-
 		var neighbors = Arrays.asList(
-			new Coordinate(x + 1, y),
-			new Coordinate(x, y - 1),
-			new Coordinate(x - 1, y),
-			new Coordinate(x, y + 1)
+			of.add(Movement.RIGHT),
+			of.add(Movement.UP),
+			of.add(Movement.LEFT),
+			of.add(Movement.DOWN)
 		);
 		return neighbors;
 	}
@@ -67,8 +66,6 @@ public class MazeGenerator {
 	/*
 	 * x: the x coordinate of the entrance
 	 * y: the y coordinate of the entrance
-	 * dx: the x direction of the entrance
-	 * dy: the y direction of the entrance
 	 * sketcher: a "strategy" for "drawing" the maze
 	 */
 	public void generate(int x, int y, MazeSketcher sketcher) {

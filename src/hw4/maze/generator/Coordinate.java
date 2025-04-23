@@ -1,10 +1,12 @@
 package hw4.maze.generator;
 
+import hw4.player.Movement;
+
 public class Coordinate {
 	private int x;
 	private int y;
 
-	Coordinate(int x, int y) {
+	public Coordinate(int x, int y) {
 		this.x = x;
 		this.y = y;
 	}
@@ -23,6 +25,14 @@ public class Coordinate {
 
 	public void setY(int y) {
 		this.y = y;
+	}
+
+	public Coordinate add(Movement direction) {
+		var coordinate = new Coordinate(
+			this.x + direction.getX(),
+			this.y + direction.getY()
+		);
+		return coordinate;
 	}
 
 	@Override
