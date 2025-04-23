@@ -42,4 +42,13 @@ public class Row {
 	public String toString() {
 		return "Row [cells=" + cells + "]";
 	}
+	
+	/**
+	 * getRowLength():
+	 * This is a helper method that retrieves the size of the row it's called upon.
+	 * @return The number of cells in a row
+	 */
+	public int getRowLength() {
+		return this.cells.size();
+	}
 }

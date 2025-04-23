@@ -54,16 +54,80 @@ public class Game {
 
 	/**
 	 * play():
-	 * This method updates a character's position based on the given input variables
-	 * @param right The direction a player will move (ex. left, right, up, down)
+	 * This method updates a character's position based on the given input variables. 
+	 * @param movement The direction a player wants to move (ex. left, right, up, down)
 	 * @param player The player to be moved
 	 * @return True if the movement and player are valid, return False if otherwise.
 	 */
-	public boolean play(Movement right, Player player) {
-		// TODO Auto-generated method stub
+	public boolean play(Movement movement, Player player) {
+		// check for invalid player (testInvalidNullPlayer)
+		if (player == null) {
+			return false;
+		}
+		
+		// check for invalid movement (testInvalidMovement)
+		if (movement == null) {
+			return false;
+		}
+		
+		// get current player position
+		var currentCell = player.getCurrentCell();
+		var playerPosition = player.getPlayerPosition();
+
+		// catch any null cell components
+		var left = currentCell.getValidEdgeType(currentCell.getLeft());
+		var right = currentCell.getValidEdgeType(currentCell.getRight());
+		var up = currentCell.getValidEdgeType(currentCell.getUp());
+		var down = currentCell.getValidEdgeType(currentCell.getDown());
+				
+		if (movement == Movement.LEFT) {
+			// check for wall
+			if (!(left == CellComponents.WALL)) {
+				// check for exit
+				if (left == CellComponents.EXIT) {
+					// end game! update player position -- move off the game grid 
+					player.setPlayerPosition(-1, -1);
+				}
+				// update player position -- move left (-1, 0)
+				player.setPlayerPosition(playerPosition.getX() -1, playerPosition.getY());
+				return true;
+			}
+		}
+		
+		if (movement == Movement.RIGHT) {
+			// check for wall
+			if (!(right == CellComponents.WALL)) {
+				// update player position -- move right (+1, 0)
+				player.setPlayerPosition(playerPosition.getX() +1, playerPosition.getY());
+				return true;
+			}
+		}
+	
+		if (movement == Movement.UP) {
+			// check for wall
+			if (!(up == CellComponents.WALL)) {
+				// update player position -- move up (0, -1)
+				player.setPlayerPosition(playerPosition.getX(), playerPosition.getY() -1);
+				return true;
+			}
+		}
+		
+		if (movement == Movement.DOWN) {
+			// check for wall
+			if (!(down == CellComponents.WALL)) {
+				// update player position -- move down (0, +1)
+				player.setPlayerPosition(playerPosition.getX(), playerPosition.getY() +1);
+				return true;
+			}
+		}
 		return false;
 	}
 	
+	/**
+	 * This method creates an empty grid containing cells. All cell components are walls by default.
+	 * @param n Grid size
+	 * @return New empty grid
+	 */
 	private Grid createEmptyGrid(int n) {
 		var rows = new ArrayList<Row>();
 		for (var i = 0; i < n; ++i) {
