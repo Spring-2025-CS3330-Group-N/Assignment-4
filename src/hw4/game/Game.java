@@ -1,6 +1,7 @@
 package hw4.game;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 import hw4.maze.Cell;
 import hw4.maze.CellComponents;
@@ -175,9 +176,10 @@ public class Game {
 		}
 
 		var grid = this.createEmptyGrid(n);
-		
-		var entranceCell = grid.getRows().get(0).getCells().get(0);
-		entranceCell.setLeft(CellComponents.EXIT);
+
+		var exitY = new Random().nextInt(grid.getRows().size());
+		var exitCell = grid.getRows().get(exitY).getCells().get(0);
+		exitCell.setLeft(CellComponents.EXIT);
 		
 		var generator = new MazeGenerator(n, n);
 		generator.generate(0, 0, new MazeSketcher() {
