@@ -202,8 +202,13 @@ public class Game {
 		return "Game [grid=" + grid + "]";
 	}
 
-	/*
-	 * Pointless function to work around the weird interface the tests force us to use.
+	/**
+	 * movePlayer():
+	 * Pointless method to work around the weird interface the tests force us to use.
+	 * Updates the player's position as well as the current cell in the maze.
+	 * @param player Player in the game
+	 * @param x New x-value
+	 * @param y New y-value
 	 */
 	public void movePlayerTo(Player player, int x, int y) {
 		var playerRow = this.grid.getRows().get(y);
@@ -213,6 +218,12 @@ public class Game {
 		player.setCurrentCell(playerCell);
 	}
 
+	/**
+	 * printBoard():
+	 * This method determines which grid print method to use.
+	 * @param player Player to be displayed on the gird
+	 * @param detailed True value uses betterPrint(), false value uses worsePrint()
+	 */
 	public void printBoard(Player player, boolean detailed) {
 		var playerPosition = player.getPlayerPosition();
 		if (detailed) {

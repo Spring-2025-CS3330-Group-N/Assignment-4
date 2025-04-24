@@ -43,6 +43,13 @@ public class Grid {
 		return "Grid [rows=" + rows + "]";
 	}
 
+	/**
+	 * worsePrint():
+	 * This method prints the grid to display in the console.
+	 * "A" represents the cell containing the player's position, "E" represents the maze exit, and "S" represents all other cells in the maze.
+	 * @param playerX Player's x-coordinate (column #)
+	 * @param playerY Player's y-coordinate (row #)
+	 */
 	public void worsePrint(int playerX, int playerY) {
 		for (var i = 0; i < this.rows.size(); ++i) {
 			var row = this.rows.get(i);
@@ -69,6 +76,13 @@ public class Grid {
 		}
 	}
 
+	/**
+	 * betterPrint():
+	 * This method prints a map of the grid it's called upon -- it displays cell walls and openings as well as the player's position.
+	 * "@" represents the player's position.
+	 * @param playerX Player's x-coordinate (column #)
+	 * @param playerY Player's y-coordinate (row #)
+	 */
 	public void betterPrint(int playerX, int playerY) {
 		for (var i = 0; i < this.rows.size(); ++i) {
 			var row = this.rows.get(i);
