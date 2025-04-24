@@ -55,6 +55,12 @@ public class Coordinate {
 		this.y = y;
 	}
 
+	/**
+	 * add():
+	 * This method adds a new coordinate based on the coordinate it's called upon given a direction to move in.
+	 * @param direction Direction to move in (ex. left, right, up, or down)
+	 * @return A new coordinate with its position updated in the given direction
+	 */
 	public Coordinate add(Movement direction) {
 		var coordinate = new Coordinate(
 			this.x + direction.getX(),

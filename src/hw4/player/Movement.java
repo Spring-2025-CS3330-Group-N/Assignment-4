@@ -12,6 +12,12 @@ public enum Movement {
 	private int x;
 	private int y;
 
+	/**
+	 * Parameterized constructor for Movement():
+	 * Sets x and y values for a movement direction.
+	 * @param x X-value 
+	 * @param y Y-value
+	 */
 	private Movement(int x, int y) {
 		this.x = x;
 		this.y = y;

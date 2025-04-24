@@ -16,10 +16,10 @@ public class Cell {
 	/**
 	 * Parameterized constructor for Cell():
 	 * Assigns each Cell member its corresponding method argument's value.
-	 * @param left
-	 * @param right
-	 * @param up
-	 * @param down
+	 * @param left Left cell component 
+	 * @param right Right cell component
+	 * @param up Up cell component
+	 * @param down Down cell component
 	 */
 	public Cell(CellComponents left, CellComponents right, CellComponents up, CellComponents down) {
 		this.left = left;
