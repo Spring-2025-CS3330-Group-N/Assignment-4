@@ -91,10 +91,9 @@ public class Game {
 					return true;
 				}
 				// update player position -- move left (-1, 0)
-				player.setPlayerPosition(playerPosition.getX() -1, playerPosition.getY());
-				player.setCurrentCell(this.grid.getRows().get(player.getPlayerPosition().getY()).getCells().get(player.getPlayerPosition().getX()));
+				this.movePlayerTo(player, playerPosition.getX() - 1, playerPosition.getY());
 				System.out.println();
-				grid.betterPrint(player.getPlayerPosition().getX(), player.getPlayerPosition().getY());
+				this.printBoard(player, true);
 				return true;
 			}
 		}
@@ -103,10 +102,9 @@ public class Game {
 			// check for wall
 			if (!(right == CellComponents.WALL)) {
 				// update player position -- move right (+1, 0)
-				player.setPlayerPosition(playerPosition.getX() +1, playerPosition.getY());
-				player.setCurrentCell(this.grid.getRows().get(player.getPlayerPosition().getY()).getCells().get(player.getPlayerPosition().getX()));
+				this.movePlayerTo(player, playerPosition.getX() + 1, playerPosition.getY());
 				System.out.println();
-				grid.betterPrint(player.getPlayerPosition().getX(), player.getPlayerPosition().getY());
+				this.printBoard(player, true);
 				return true;
 			}
 		}
@@ -115,10 +113,9 @@ public class Game {
 			// check for wall
 			if (!(up == CellComponents.WALL)) {
 				// update player position -- move up (0, -1)
-				player.setPlayerPosition(playerPosition.getX(), playerPosition.getY() -1);
-				player.setCurrentCell(this.grid.getRows().get(player.getPlayerPosition().getY()).getCells().get(player.getPlayerPosition().getX()));
+				this.movePlayerTo(player, playerPosition.getX(), playerPosition.getY() - 1);
 				System.out.println();
-				grid.betterPrint(player.getPlayerPosition().getX(), player.getPlayerPosition().getY());
+				this.printBoard(player, true);
 				return true;
 			}
 		}
@@ -127,10 +124,9 @@ public class Game {
 			// check for wall
 			if (!(down == CellComponents.WALL)) {
 				// update player position -- move down (0, +1)
-				player.setPlayerPosition(playerPosition.getX(), playerPosition.getY() +1);
-				player.setCurrentCell(this.grid.getRows().get(player.getPlayerPosition().getY()).getCells().get(player.getPlayerPosition().getX()));
+				this.movePlayerTo(player, playerPosition.getX(), playerPosition.getY() + 1);
 				System.out.println();
-				grid.betterPrint(player.getPlayerPosition().getX(), player.getPlayerPosition().getY());
+				this.printBoard(player, true);
 				return true;
 			}
 		}
@@ -204,5 +200,25 @@ public class Game {
 	@Override
 	public String toString() {
 		return "Game [grid=" + grid + "]";
+	}
+
+	/*
+	 * Pointless function to work around the weird interface the tests force us to use.
+	 */
+	public void movePlayerTo(Player player, int x, int y) {
+		var playerRow = this.grid.getRows().get(y);
+		var playerCell = playerRow.getCells().get(x);
+		player.setPlayerPosition(x, y);
+		player.setCurrentCell(playerCell);
+		player.setCurrentCell(playerCell);
+	}
+
+	public void printBoard(Player player, boolean detailed) {
+		var playerPosition = player.getPlayerPosition();
+		if (detailed) {
+			this.grid.betterPrint(playerPosition.getX(), playerPosition.getY());
+		} else {
+			this.grid.worsePrint(playerPosition.getX(), playerPosition.getY());
+		}
 	}
 }
