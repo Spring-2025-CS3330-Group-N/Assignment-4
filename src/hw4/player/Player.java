@@ -90,13 +90,6 @@ public class Player {
 	 * @param y Desired y value of coordinate
 	 */
 	public void setPlayerPosition(int x, int y) {
-		// if null, set position to bottom right of grid
-		if (this.position == null) {
-			var n = this.currentRow.getRowLength();
-			Coordinate origin = new Coordinate(n, n); 
-			this.position = origin;
-		}
-		this.position.setX(x);
-		this.position.setY(y);
+		this.position = new Coordinate(x, y);
 	}
 }

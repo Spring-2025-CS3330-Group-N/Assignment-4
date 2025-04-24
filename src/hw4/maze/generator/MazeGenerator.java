@@ -14,6 +14,11 @@ public class MazeGenerator {
 	private boolean[][] visited;
 	private ArrayList<Coordinate> backtrack;
 
+	/**
+	 * create an instance of a width x height maze generator
+	 * @param width
+	 * @param height
+	 */
 	public MazeGenerator(int width, int height) {
 		this.width = width;
 		this.height = height;
@@ -21,6 +26,12 @@ public class MazeGenerator {
 		backtrack = new ArrayList<Coordinate>();
 	}
 
+	/**
+	 * pick a random item from a list
+	 * @param <T>
+	 * @param list
+	 * @return
+	 */
 	private <T> T pick(List<T> list) {
 		var random = new Random();
 		var index = random.nextInt(list.size());
@@ -28,6 +39,11 @@ public class MazeGenerator {
 		return item;
 	}
 
+	/**
+	 * check if a coordinate is in the bounds of the maze
+	 * @param coordinate
+	 * @return
+	 */
 	private boolean inBounds(Coordinate coordinate) {
 		var xInBounds = 0 <= coordinate.getX() && coordinate.getX() < this.width;
 		var yInBounds = 0 <= coordinate.getY() && coordinate.getY() < this.height;
@@ -35,11 +51,21 @@ public class MazeGenerator {
 		return inBounds;
 	}
 
+	/**
+	 * check if a coordinate has already been visited in the search
+	 * @param coordinate
+	 * @return
+	 */
 	private boolean isVisited(Coordinate coordinate) {
 		var isVisited = this.visited[coordinate.getY()][coordinate.getX()];
 		return isVisited;
 	}
 
+	/**
+	 * get a list of all the coordinates neighboring a particular coordinate
+	 * @param of
+	 * @return
+	 */
 	private List<Coordinate> getNeighbors(Coordinate of) {
 		var neighbors = Arrays.asList(
 			of.add(Movement.RIGHT),
@@ -50,6 +76,11 @@ public class MazeGenerator {
 		return neighbors;
 	}
 
+	/**
+	 * get a list of all the coordinates neighboring a particular coordinate that can (still) be visited
+	 * @param of
+	 * @return
+	 */
 	private List<Coordinate> getVisitableNeighbors(Coordinate of) {
 		var neighbors = this.getNeighbors(of);
 		var visitableNeighbors = neighbors.stream().filter(
@@ -58,15 +89,20 @@ public class MazeGenerator {
 		return visitableNeighbors;
 	}
 
+	/**
+	 * mark a location as visited and add it to the backtracking stack
+	 * @param location
+	 */
 	private void visit(Coordinate location) {
 		this.visited[location.getY()][location.getX()] = true;
 		this.backtrack.add(location);
 	}
 
-	/*
-	 * x: the x coordinate of the entrance
-	 * y: the y coordinate of the entrance
-	 * sketcher: a "strategy" for "drawing" the maze
+	/**
+	 * generate a random maze starting at (x, y) using a ("recursive") backtracking algorithm
+	 * @param x the starting x position
+	 * @param y the starting y position
+	 * @param sketcher a tool for connecting cells in the maze
 	 */
 	public void generate(int x, int y, MazeSketcher sketcher) {
 		this.visit(new Coordinate(x, y));
