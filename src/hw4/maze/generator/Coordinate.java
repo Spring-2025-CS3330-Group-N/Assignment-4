@@ -54,7 +54,12 @@ public class Coordinate {
 	public void setY(int y) {
 		this.y = y;
 	}
-
+	
+	/**
+	 * adds a movement vector to this coordinate
+	 * @param direction
+	 * @return the new coordinate
+	 */
 	public Coordinate add(Movement direction) {
 		var coordinate = new Coordinate(
 			this.x + direction.getX(),
